@@ -1,0 +1,8 @@
+
+vendor/
+sendgrid.env
+.vscode/
+composer.lock
+dbpass.php
+mailgun.php
+stripeApiKey.php
