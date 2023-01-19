@@ -12,9 +12,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     //check if user exist
-    $queryExistUser = "SELECT * FROM `Client` WHERE email='$email'";
+    $queryExistUser = "SELECT * FROM `Client` WHERE email=:email";
     $queryPrepare = $con->prepare($queryExistUser);
-    $queryPrepare->execute();
+    $queryPrepare->execute(['email' => $email]);
     $result = $queryPrepare->fetchAll(PDO::FETCH_ASSOC);
     if (count($result) == 0) {
         $messageEror = array(

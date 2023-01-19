@@ -21,12 +21,10 @@ FROM CartItem
 INNER JOIN Cart ON Cart.id = CartItem.idCart 
 INNER JOIN Client ON Client.id = Cart.idClient
 INNER JOIN Product ON Product.id = CartItem.idProduct
-WHERE Client.email = \"$emailClient\"
+WHERE Client.email = :emailClient
 AND Cart.active = 1";
-
-
 $query = $con->prepare($sql);
-$query->execute();
+$query->execute(['emailClient' => $emailClient]);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $line_items = array();

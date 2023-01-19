@@ -14,9 +14,9 @@ if (isset($_POST['firstName']) && isset($_POST['password']) && isset($_POST['sur
     $email = $_POST['email'];
     $password = $_POST['password'];
     $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
-    $query = "SELECT `id` FROM `Client` WHERE email = '$email'";
+    $query = "SELECT `id` FROM `Client` WHERE email = :email";
     $queryPrepare = $con->prepare($query);
-    $queryPrepare->execute();
+    $queryPrepare->execute(['email' => $email]);
     $result = $queryPrepare->fetchAll(PDO::FETCH_ASSOC);
     if (count($result) > 0) {
         echo json_encode(
@@ -25,9 +25,9 @@ if (isset($_POST['firstName']) && isset($_POST['password']) && isset($_POST['sur
             )
         );
     } else {
-        $query = "INSERT INTO `Client` ( `firstname`, `passwordHash`, `email`, `surname`) VALUES ('$firstname', '$passwordHashed', '$email', '$surname')";
+        $query = "INSERT INTO `Client` ( `firstname`, `passwordHash`, `email`, `surname`) VALUES (':firstname', ':passwordHashed', ':email', ':surname')";
         $queryPrepare = $con->prepare($query);
-        $queryPrepare->execute();
+        $queryPrepare->execute(['firstname' => $firstname, 'passwordHashed' => $passwordHashed, 'email' => $email, 'surname' => $surname]);
         $key = "Clement83";
         $token = array(
             "email" => $email,

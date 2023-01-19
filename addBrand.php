@@ -6,9 +6,9 @@ $link = $_POST['link'];
 $imageURL = $_POST['imageURL'];
 
 // insert into brand
-$sql = "INSERT INTO Brand (title, description, link, imageURL) VALUES (\"$title\", \"$description\", \"$link\", \"$imageURL\")";
+$sql = "INSERT INTO Brand (title, description, link, imageURL) VALUES (:title, :description, :link, :imageURL)";
 $query = $con->prepare($sql);
-$query->execute();
+$query->execute(['title' => $title, 'description' => $description, 'link' => $link, 'imageURL' => $imageURL]);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 

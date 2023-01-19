@@ -1,13 +1,11 @@
 <?php
 require 'connect.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 
 $id = $_POST['id'];
 
-$sql="DELETE FROM Brand WHERE id=\"$id\"";
+$sql="DELETE FROM Brand WHERE id=:id";
 $query = $con->prepare($sql);
-$query->execute();
+$query->execute(['id' => $id]);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($result);
