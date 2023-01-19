@@ -5,9 +5,7 @@ require 'stripeApiKey.php';
 require 'connect.php';
 require 'mail.php';
 require 'mailgun.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
 
 \Stripe\Stripe::setApiKey($stripeApiKey);
@@ -63,7 +61,7 @@ function searchForIdCart($con, $idClient)
 
 $idCart= searchForIdCart($con, $idClient)[0]['id'];
 // Insert into table Billing with idClient and idCart and amountHT and amountTTC and billingDate
-$sql = "INSERT INTO   Billing (idClient, idCart, amountHT, amountTTC, billingDate) VALUES (:idClient, :idCart, :amountSubTotal, :amountTotal, ':date')";
+$sql = "INSERT INTO   Billing (idClient, idCart, amountHT, amountTTC, billingDate) VALUES (:idClient, :idCart, :amountSubTotal, :amountTotal, :date)";
 $query = $con->prepare($sql);
 $query->execute(['idClient' => $idClient, 'idCart' => $idCart, 'amountSubTotal' => $checkoutSession->amount_subtotal / 100, 'amountTotal' => $checkoutSession->amount_total/100, 'date' => date('Y-m-d')]);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);

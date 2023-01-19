@@ -1,5 +1,8 @@
 <?php
 require 'connect.php';
+require 'testAdmin.php';
+
+
 
 $id = $_POST['id'];
 

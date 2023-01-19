@@ -1,5 +1,7 @@
 <?php 
 require 'connect.php';
+require 'testAdmin.php';
+
 $title = $_POST['title'];
 $description = $_POST['description'];
 $link = $_POST['link'];

@@ -1,5 +1,7 @@
 <?php 
 require 'connect.php';
+require 'testAdmin.php';
+
 $title = $_POST['title'];
 $description = $_POST['description'];
 $publicPrice = floatval($_POST['publicPrice']);

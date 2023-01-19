@@ -11,7 +11,7 @@ Product.purchasePrice,
 Product.publicPrice,
 Product.note
 FROM Product
-INNER JOIN Brand ON Product.brand = Brand.id WHERE Product.title LIKE '%:searchTitle%'";
+INNER JOIN Brand ON Product.brand = Brand.id WHERE Product.title LIKE CONCAT('%', :searchTitle, '%')";
 
 $query = $con->prepare($sql);
 $query->execute(['searchTitle' => $searchTitle]);

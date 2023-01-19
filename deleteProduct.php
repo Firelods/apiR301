@@ -1,5 +1,6 @@
 <?php
 require 'connect.php';
+require 'testAdmin.php';
 $id = $_POST['id'];
 
 $sql="DELETE FROM Product WHERE id=:id";

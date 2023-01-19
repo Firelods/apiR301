@@ -1,5 +1,7 @@
 <?php
 require 'connect.php';
+require 'verifyJwt.php';
+
 $emailClient = $_GET['emailClient'];
 
 //make a select query on all cartItem

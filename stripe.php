@@ -27,6 +27,43 @@ $query = $con->prepare($sql);
 $query->execute(['emailClient' => $emailClient]);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
+
+
+/**/ 
+
+//verifier pour chaque produit si il y a assez de stock
+$sql = "SELECT Product.title,
+Brand.title as brand,
+Product.descriptionProduct,
+Product.id,
+Product.imageURL,
+Product.purchasePrice,
+Product.publicPrice,
+Product.note
+FROM Product
+INNER JOIN Brand ON Product.brand = Brand.id
+INNER JOIN StockManagement ON Product.id = StockManagement.idProduct
+WHERE StockManagement.quantity < 1";
+
+$query = $con->prepare($sql);
+$query->execute();
+$missingProductTable = $query->fetchAll(PDO::FETCH_ASSOC);
+// echo json_encode($missingProductTable);
+
+foreach ($result as $row) {
+    foreach ($missingProductTable as $missingProduct) {
+        if ($row['id'] == $missingProduct['id']) {
+            $message = array(
+                "error" => "not enough stock"
+            );
+            echo json_encode($message);
+            exit();
+        }
+    }
+}
+
+//si on arrive ici c'est que tout est bon, la commande peut être passée
+
 $line_items = array();
 foreach ($result as $row) {
     $line_items[] = array(

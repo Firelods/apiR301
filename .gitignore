@@ -6,3 +6,4 @@ composer.lock
 dbpass.php
 mailgun.php
 stripeApiKey.php
+*.sql

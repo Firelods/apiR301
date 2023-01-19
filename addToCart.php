@@ -11,7 +11,7 @@ function searchForIdCart($con, $idClient)
 
 if (isset($_POST['idProduct']) && isset($_POST['quantity']) && isset($_POST['mailCustomer'])) {
     // if no cart exists for this customer, create one only if user exists
-    $sql = "SELECT * FROM Client WHERE email = ':mailCustomer'";
+    $sql = "SELECT * FROM Client WHERE email = :mailCustomer";
     $query = $con->prepare($sql);
     $query->execute(['mailCustomer' => $_POST['mailCustomer']]);
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -23,7 +23,7 @@ if (isset($_POST['idProduct']) && isset($_POST['quantity']) && isset($_POST['mai
     //search the idCart of the customer
     $result = searchForIdCart($con, $idClient);
     if (count($result) == 0) {
-        $sql = "INSERT INTO `Cart` (`idClient`) VALUES (':idClient')";
+        $sql = "INSERT INTO `Cart` (`idClient`) VALUES (:idClient)";
         $query = $con->prepare($sql);
         $query->execute(['idClient' => $idClient]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
