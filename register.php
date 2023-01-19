@@ -3,7 +3,7 @@ require 'connect.php';
 require './vendor/autoload.php';
 require 'mail.php';
 use Firebase\JWT\JWT;
-
+require_once('mailgun.php'); 
 //print errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -41,7 +41,7 @@ if (isset($_POST['firstName']) && isset($_POST['password']) && isset($_POST['sur
                 "jwt" => $jwt
             )
         );
-        sendMail($email, $firstname);
+        sendMail($email, $firstname,$MAIL_GUN_API_KEY);
     }
 
 } else {
