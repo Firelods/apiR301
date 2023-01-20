@@ -27,10 +27,6 @@ $query = $con->prepare($sql);
 $query->execute(['emailClient' => $emailClient]);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
-
-/**/ 
-
 //verifier pour chaque produit si il y a assez de stock
 $sql = "SELECT Product.title,
 Brand.title as brand,
@@ -54,7 +50,7 @@ foreach ($result as $row) {
     foreach ($missingProductTable as $missingProduct) {
         if ($row['id'] == $missingProduct['id']) {
             $message = array(
-                "error" => "not enough stock"
+                "error" => "Désolé, un des articles de votre panier n'est plus disponible. La prochine fois, soyez plus rapide !"
             );
             echo json_encode($message);
             exit();

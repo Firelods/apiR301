@@ -126,7 +126,6 @@ function sendMailOrder($mail, $username,$products,$MAIL_GUN_API_KEY)
     <h2>Commande : </h2>
     <ul>
     ";
-    print_r($products);
     foreach ($products as $product) {
         $phpmailerContent .= "<li>".$product."</li>";
     }
