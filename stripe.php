@@ -71,6 +71,7 @@ foreach ($result as $row) {
             'unit_amount' => ($row['publicPrice'] * 100),
         ),
         'quantity' => $row['quantity'],
+        'tax_rates' => ['txr_1MSN7zGn4hoh5TNVceiUMZgb'],
     );
 }
 
@@ -79,11 +80,12 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => $line_items,
     'mode' => 'payment',
     'success_url' => $YOUR_DOMAIN . '?success=true',
-    'cancel_url' => $YOUR_DOMAIN . '?canceled=true',
+    'cancel_url' => "http://seinksansdoozebank.engineer/",
     'metadata' => [
         'client_email'=> $emailClient
         // 'client_name' =>"John Doe"
-],
+    // add tax
+    ],
 ]);
 
 // header("HTTP/1.1 303 See Other");
