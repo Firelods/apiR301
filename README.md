@@ -8,4 +8,4 @@ L'API discute avec une base de données MySQL dont le script vous est fourni pou
 
 
 #### Sécurité
-Pour que tout les échanges entre le back-end et le front-end soient sécurisé, lors de la connexion d'un utilisateur, le back-end renvoie un JWT (JsonWebToken) que le front-end renvoie à chaque requête à l'API grâce à un http-interceptor. De ce fait, l'API est capable de déterminer si l'utilisateur est administrateur ou non, évidemment le JWT est vérifié à l'aide de sa clé pour vérifier que le JWT n'a pas été manipulé pendant les échanges http.
+Pour que tous les échanges entre le back-end et le front-end soient sécurisé, lors de la connexion d'un utilisateur, le back-end renvoie un JWT (JsonWebToken) que le front-end renvoie à chaque requête à l'API grâce à un http-interceptor. De ce fait, l'API est capable de déterminer si l'utilisateur est administrateur ou non, évidemment le JWT est vérifié à l'aide de sa clé pour vérifier que le JWT n'a pas été manipulé pendant les échanges http.
